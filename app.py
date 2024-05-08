@@ -16,7 +16,7 @@ finacial fraud is a form of identity theft that involves an unauthorized taking 
 
 **This Streamlit App aims to detect fraudulent finacial transactions based on transaction details such as amount, sender/receiver information, and transaction type.**
 
-**CONTRIBUTERS:** SANTHIYA, JERIN JASHPER, SELVALAKSHMI, AGANIYA
+**CONTRIBUTERS:** SANTHIYA, JERIN JASHPER, SELVALAKSHMI, AGANIYA.
 
 """)
 # Input features of the transaction
