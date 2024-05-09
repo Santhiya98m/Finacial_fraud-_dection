@@ -86,7 +86,7 @@ if _name_ == "_main_":
     # Predict fraud based on input data
     if st.sidebar.button("Predict Fraud"):
         prediction_result = predict_fraud(input_data)
-        st.write(f"The transaction is {prediction_result}."
+        st.write(f"The transaction is {prediction_result}.")
     # Encoding transaction type (assuming it's already encoded)
     transaction_types = ["Option 1", "Option 2", "Option 3"]
     transaction_type_encoded = [1 if t == transaction_type else 0 for t in transaction_types]
