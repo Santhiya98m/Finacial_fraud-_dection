@@ -18,8 +18,8 @@ class fraudDetection(BaseModel):
     types: int
     amount: float
     oldbalanceorig: float
-    newbalanceorig: float
     oldbalancedest: float
+    newbalanceorig: float
     newbalancedest: float
     isflaggedfraud: int
 
@@ -47,14 +47,21 @@ def predict_fraud(data: fraudDetection):
         return "Error"
 
 # Streamlit app main code
-if _name_ == "_main_":
+if __name__ == "__main__":
     # Display introductory message
-    st.markdown("### Credit Card Fraud Detection API 🙌🏻")
+    st.markdown("### Financial Transaction Fraud Detection 🙌🏻")
 
     # Display instructions
     st.markdown("#### Instructions:")
     st.markdown("- Enter the transaction details in the sidebar.")
     st.markdown("- Click the 'Predict Fraud' button to see the prediction result.")
+    st.markdown("For types of transaction⬇️")
+    st.markdown("""
+                 0 for 'Cash In' Transaction\n 
+                 1 for 'Cash Out' Transaction\n 
+                 2 for 'Debit' Transaction\n
+                 3 for 'Payment' Transaction\n  
+                 4 for 'Transfer' Transaction\n""")
 
     # Collect input data from the user
     st.sidebar.markdown("### Input Transaction Details:")
@@ -62,8 +69,8 @@ if _name_ == "_main_":
     types = st.sidebar.number_input("Types", value=0, step=1)
     amount = st.sidebar.number_input("Amount", value=0.0, step=0.01)
     oldbalanceorig = st.sidebar.number_input("Old Balance Orig", value=0.0, step=0.01)
-    newbalanceorig = st.sidebar.number_input("New Balance Orig", value=0.0, step=0.01)
     oldbalancedest = st.sidebar.number_input("Old Balance Dest", value=0.0, step=0.01)
+    newbalanceorig = st.sidebar.number_input("New Balance Orig", value=0.0, step=0.01)
     newbalancedest = st.sidebar.number_input("New Balance Dest", value=0.0, step=0.01)
     isflaggedfraud = 0
     if amount >= 200000:
@@ -77,8 +84,8 @@ if _name_ == "_main_":
         types=types,
         amount=amount,
         oldbalanceorig=oldbalanceorig,
-        newbalanceorig=newbalanceorig,
         oldbalancedest=oldbalancedest,
+        newbalanceorig=newbalanceorig,
         newbalancedest=newbalancedest,
         isflaggedfraud=isflaggedfraud
     )
@@ -87,15 +94,3 @@ if _name_ == "_main_":
     if st.sidebar.button("Predict Fraud"):
         prediction_result = predict_fraud(input_data)
         st.write(f"The transaction is {prediction_result}.")
-    # Encoding transaction type (assuming it's already encoded)
-    transaction_types = ["Option 1", "Option 2", "Option 3"]
-    transaction_type_encoded = [1 if t == transaction_type else 0 for t in transaction_types]
-
-    # Make prediction
-    features = np.array([[step, amount, oldbalanceOrg, newbalanceOrig, oldbalanceDest, newbalanceDest] + transaction_type_encoded])
-    prediction = model.predict(features)
-    return "Fraudulent" if prediction == 1 else "Not Fraudulent"
-# Detection result
-if st.button("Detect Fraud"):
-    result = predict(step, amount, oldbalanceOrg, newbalanceOrig, oldbalanceDest, newbalanceDest, transaction_type, sender_id, receiver_id)
-    st.write("The transaction is predicted as: {result}")
