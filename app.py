@@ -90,9 +90,7 @@ if st.button("Detection Result"):
     8. System Flag Fraud Status(Transaction amount greater than $200000): {isflaggedfraud}
                 """)
 
-  
-    resp = json.loads(json_str)
-    
+   
     if sender_name=='' or receiver_name == '':
         st.write("Error! Please input Transaction ID or Names of Sender and Receiver!")
     else:
