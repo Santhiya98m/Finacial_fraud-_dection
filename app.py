@@ -90,8 +90,7 @@ if st.button("Detection Result"):
     8. System Flag Fraud Status(Transaction amount greater than $200000): {isflaggedfraud}
                 """)
 
-    res = re.post(f"https://credit-fraud-ml-api.herokuapp.com/predict",json=values)
-    json_str = json.dumps(res.json())
+  
     resp = json.loads(json_str)
     
     if sender_name=='' or receiver_name == '':
